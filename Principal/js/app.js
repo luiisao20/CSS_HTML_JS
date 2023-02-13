@@ -11,11 +11,11 @@ const error = document.getElementById('error');
 // Funciones de evento
 function comprobarForm(event) {
     // Comprobar cambios
-    if (nickInput.value.length == 0){
+    if (nickInput.value.match(/(?<!\$)[0-9]/)){
         console.log('No hay nick');
         nickInput.focus();
         event.preventDefault();
-        error.innerText= 'El campo de nick no puede estar vacío'
+        error.innerText= 'El campo de nick no puede comenzar con numero';
         return false
     } else if(tamanoInput.value == '0'){
         console.log('No se ha seleccionado tamaño de panel');
@@ -26,6 +26,6 @@ function comprobarForm(event) {
     }
     return true;
 }
-
+// Funcin parseInt
 // Inicio de carga de eventos
 formEntrada.addEventListener('submit', comprobarForm);

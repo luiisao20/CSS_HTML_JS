@@ -4,18 +4,14 @@
 */
 
 // Iniciando variables, objetos y DOM
-const nickInput = document.getElementById('nick');
-const tamanoInput = document.getElementById('tamano');
-const emailInput = document.getElementById('email');
-const formEntrada = document.getElementById('formEntrada');
-const error = document.getElementById('error');
-
-// Comprobar si hay algun error de juego.html
-if(sessionStorage.getItem('error')){
-  
-  error.innerText = sessionStorage.getItem('error');
-  sessionStorage.removeItem('error');
-}
+var nickInput;
+var tamanoInput;
+var emailInput;
+var formEntrada;
+var error;
+var itemImg;
+var avatarItems;
+var avatarCont;
 
 // Funciones de evento
 function comprobarForm(event) {
@@ -26,7 +22,7 @@ function comprobarForm(event) {
         event.preventDefault();
         error.innerText = 'El campo de nick no puede comenzar con numero';
         return false
-    } else if(tamanoInput.value == '0'){
+      } else if(tamanoInput.value == '0'){
         console.log('No se ha seleccionado tamaño de panel');
         tamanoInput.focus();
         event.preventDefault();
@@ -39,6 +35,45 @@ function comprobarForm(event) {
     return true;
 }
 
+function moviendoImg(event){
+  itemImg = event.target
+  console.log(itemImg.src);
+}
+
+function cambiarImg(event){
+  avatarCont.src = itemImg.src;
+}
+
+/**
+ * Carga objetos del DOM comprobaciones y eventos del formulario
+ */
+function domCargado(){
+  // La captura de todos los elementos necesarios
+  nickInput = document.getElementById('nick');
+  tamanoInput = document.getElementById('tamano');
+  emailInput = document.getElementById('email');
+  formEntrada = document.getElementById('formEntrada');
+  error = document.getElementById('error');
+  
+  // Comprobar si hay algun error de juego.html
+  if(sessionStorage.getItem('error')){
+    error.innerText = sessionStorage.getItem('error');
+    sessionStorage.removeItem('error');
+  }
+  
+  formEntrada.addEventListener('submit', comprobarForm);
+  
+  // Eventos del D&D
+  avatarItems = document.getElementsByClassName('avatarImgItem');
+  
+  for (let item of avatarItems){
+    item.addEventListener('dragstart', moviendoImg);
+  }
+  avatarCont = document.getElementById('avatarImg');
+  avatarCont.addEventListener('dragover', e=>{e.preventDefault()})
+  avatarCont.addEventListener('drop', cambiarImg)
+}
+
 // Inicio de carga de eventos
-formEntrada.addEventListener('submit', comprobarForm);
+document.addEventListener('DOMContentLoaded', domCargado);
 datoGeoLocation();

@@ -1,0 +1,11 @@
+#objeto{
+    background-color: brown;
+    padding-bottom: 20px;
+    width: 80px;
+}
+#contenedor{
+    border: 1px solid brown;
+    width: 200px;
+    height: 200px;
+    margin-top: 20px;
+}

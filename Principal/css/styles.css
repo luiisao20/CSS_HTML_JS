@@ -49,6 +49,15 @@ select{
     font-size: 18px;
 }
 /*IDs y Clases*/
+.avatarItem{
+    background-color: #fff;
+    border: solid 1px #fd0c49;
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    padding-top: 5px;
+    padding-left: 5px;
+}
 #nicka{
     text-align: center;
     font-family: 'Poppins', sans-serif;
@@ -71,4 +80,26 @@ select{
 #email{
   width: 278px;
   border-radius: 5px;
+}
+#avatar{
+    float: left;
+}
+#avatarContainer{
+    display: flex;
+    background-color: #fff;
+    border: solid 1px #fd0c49;
+    border-radius: 5px;
+    width: 125px;
+    height: 125px;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+#avatargrid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 30px;
 }

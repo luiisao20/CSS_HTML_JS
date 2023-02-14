@@ -7,6 +7,9 @@ header, footer{
     width: 300px;
     margin: 30px auto 0px auto;
 }
+p{
+    font-weight: 200;
+}
 main{
     width: 300px;
     margin: 30px auto 0px auto;
@@ -64,4 +67,8 @@ select{
     font-size: 14px;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+#email{
+  width: 278px;
+  border-radius: 5px;
 }

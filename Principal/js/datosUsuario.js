@@ -7,25 +7,27 @@ var nick;
 var tamano;
 var email;
 var geoLocationtTxt;
+var avatarImg;
 
 /** Tomar los datos del usuario
-* @param {HTMLElement} nick
-* @param {HTMLElement} tamano
-* @param {HTMLElement} email
+* @param {HTMLElement} nick nick del usuario
+* @param {HTMLElement} tamano tramaño del papel
+* @param {HTMLElement} email email del usuario
 */
 
-function datosUsuario(nick, tamano, email){
+function datosUsuario(nick, tamano, email, avatarCont){
   sessionStorage.setItem('nick', nick.value);
   sessionStorage.setItem('tamano', tamano.value);
   sessionStorage.setItem('email', email.value);
   sessionStorage.setItem('geoLocationtTxt', geoLocationtTxt)
+  sessionStorage.setItem('avatarImg', avatarCont.src);
 }
 
 function getDatosUsuario(){
   nick = sessionStorage.getItem('nick');
   tamano = sessionStorage.getItem('tamano');
   email = sessionStorage.getItem('email');
-  console.log(nick);
+  avatarImg = sessionStorage.getItem('avatarImg');
 }
 
 function comprobacionDatosUsuario(){

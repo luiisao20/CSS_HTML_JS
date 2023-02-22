@@ -8,6 +8,7 @@ var adyacentes = [];
 var idMarcados = [];
 var classMarcada;
 var tamanoPanel;
+var idInterval;
 
 function rellenarFormularioUsuario(){
     document.getElementById('nick').value = nick;
@@ -60,6 +61,34 @@ function calcularAdyacentes(idMarcado){
     }
 }
 
+/**
+ * Realiza el conteo regresivo
+ */
+
+function cuentaAtras(){
+    let inputRestante = parseInt(document.getElementById('tmpo').value) - 1;
+    document.getElementById('tmpo').value = inputRestante;
+    if(inputRestante == 0){
+        clearInterval(idInterval);
+        // Finalizar todos los eventos
+        const items = document.getElementsByClassName('item');
+        for (let item of items) {
+            item.removeEventListener('mousedown', comenzarMarcar);
+            item.removeEventListener('mouseover', continuarMarcando);
+        }
+        document.removeEventListener('mouseup', finalizarMarcado);
+        // Cambiar z-index de los paneles
+        document.getElementById('juegoacabado').classList.add('juegoAcabadoColor');
+        document.getElementById('juegoacabado').style.zIndex = '2';
+        document.getElementById('juego').style.zIndex = '1';
+        document.getElementById('nuevapartida').addEventListener('click', e => location.reload())
+    }
+
+}
+
+/**
+ * Inician los eventos del programa
+ */
 function programarEventosJuego(){
     const items = document.getElementsByClassName('item');
     for (let item of items) {
@@ -67,6 +96,8 @@ function programarEventosJuego(){
         item.addEventListener('mouseover', continuarMarcando);
     }
     document.addEventListener('mouseup', finalizarMarcado);
+    // Cuenta regresiva
+    idInterval = setInterval(cuentaAtras, 1000)
 }
 
 /**
